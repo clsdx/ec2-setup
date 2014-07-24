@@ -69,8 +69,8 @@ source ~/.vimrc
 # source completion file for tmuxinator
 source .tmuxinator/tmuxinator.bash
 
-# Install sails.js MVC framework for node.js
-sudo npm -g install sails
+# Install sails.js MVC framework for node.js -> changed to non global via npm.
+#sudo npm -g install sails
 
 # Install MQTT tools
 sudo apt-get install -y mosquitto python-mosquitto mosquitto-clients
