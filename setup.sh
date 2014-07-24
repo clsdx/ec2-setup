@@ -37,9 +37,9 @@ sudo apt-get install -y rlwrap
 
 # Install emacs24
 # https://launchpad.net/~cassou/+archive/emacs
-sudo add-apt-repository -y ppa:cassou/emacs
-sudo apt-get -qq update
-sudo apt-get install -y emacs24-nox emacs24-el emacs24-common-non-dfsg
+#sudo add-apt-repository -y ppa:cassou/emacs
+#sudo apt-get -qq update
+#sudo apt-get install -y emacs24-nox emacs24-el emacs24-common-non-dfsg
 
 # Install tmuxinator (help for setting tmux sessions)
 sudo gem install tmuxinator
@@ -53,19 +53,18 @@ cd $HOME
 if [ -d ./dotfiles/ ]; then
     mv dotfiles dotfiles.old
 fi
-if [ -d .emacs.d/ ]; then
+#if [ -d .emacs.d/ ]; then
     mv .emacs.d .emacs.d~
-fi
-git clone https://github.com/tibotiber/ec2-dotfiles.git dotfiles
-ln -sb dotfiles/.tmux.conf .
-ln -sb dotfiles/.tmuxinator .
-ln -sb dotfiles/.bash_profile .
-ln -sb dotfiles/.bashrc .
-ln -sb dotfiles/.bashrc_custom .
-ln -sf dotfiles/.emacs.d .
+#fi
+git clone https://github.com/clsdx/dotfiles.git dotfiles
+. ~/dotfiles/.install.sh
 
 # update bash profile
 . ~/.bash_profile
+
+#source (bash/vim)rc
+source ~/.bashrc
+source ~/.vimrc
 
 # source completion file for tmuxinator
 source .tmuxinator/tmuxinator.bash
@@ -76,7 +75,7 @@ sudo npm -g install sails
 # Install MQTT tools
 sudo apt-get install -y mosquitto python-mosquitto mosquitto-clients
 sudo rm /etc/init/mosquitto.conf # because I don't want mosquitto as a startup service
-sudo npm -g install mosca # mosca installed globally if not included in ubismart
+#sudo npm -g install mosca # mosca installed globally if not included in ubismart
 
 # Install i386 architecture & system-level 32bit libs to run yap (eye)
 # This bit is Ubuntu 14.04 specific!
@@ -88,9 +87,8 @@ sudo apt-get install -y zlib1g:i386
 
 
 # config for efficient git
-git config --global user.name "Thibaut Tiberghien"
-git config --global user.email "thibaut.tiberghien@ipal.cnrs.fr"
-ssh-keygen -t rsa -N "" -C "thibaut@planecq.com" -f ~/.ssh/id_rsa
+git config --global user.name "Cyril Seydoux"
+ssh-keygen -t rsa -N "" -C "cyril.kiwi@hotmail.fr" -f ~/.ssh/id_rsa
 ssh-add id_rsa
 echo "You should copy the next line into a new ssh key on github (https://github.com/settings/ssh)."
 cat ~/.ssh/id_rsa.pub
