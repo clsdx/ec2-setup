@@ -18,6 +18,7 @@ sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get -qq update
 sudo apt-get install -y nodejs
+sudo apt-get install -y unzip
 
 # Install node version manager to switch versions easily
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.12.1/install.sh | bash
