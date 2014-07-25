@@ -15,21 +15,14 @@ sudo apt-get install -y git
 # Install node.js via package manager (npm is included in chris lea's nodejs package)
 # https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 sudo apt-get install -y software-properties-common
-sudo apt-get install -y python-software-properties python g++ make
 sudo add-apt-repository -y ppa:chris-lea/node.js
 sudo apt-get -qq update
 sudo apt-get install -y nodejs
 
-# Install zeromq-node binaries so that npm install zmq works
-# https://github.com/JustinTulloss/zeromq.node/wiki/Installation
-sudo add-apt-repository -y ppa:chris-lea/zeromq
-sudo add-apt-repository -y ppa:chris-lea/libpgm
-sudo apt-get update
-sudo apt-get install -y libzmq3-dev
+# Install node version manager to switch versions easily
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.12.1/install.sh | bash
 
-# Install jshint to allow checking of JS code within emacs
-# http://jshint.com/
-sudo npm install -g jshint
+
 
 # Install rlwrap to provide libreadline features with node
 # See: http://nodejs.org/api/repl.html#repl_repl
@@ -66,6 +59,12 @@ git clone https://github.com/clsdx/dotfiles.git dotfiles
 source ~/.bashrc
 source ~/.vimrc
 
+#for poor tibotiber's emacs delusion:
+git clone https://github.com/tibotiber/ec2-dotfiles.git
+
+ln -sb ~/ec2-dotfiles/.tmuxinator ~/
+ln -sf ~/ec2-dotfiles/.emacs.d ~/
+
 # source completion file for tmuxinator
 source .tmuxinator/tmuxinator.bash
 
@@ -85,10 +84,17 @@ sudo apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 # Install yap specific 32bit lib
 sudo apt-get install -y zlib1g:i386
 
+# Install zeromq-node binaries so that npm install zmq works
+# https://github.com/JustinTulloss/zeromq.node/wiki/Installation
+sudo add-apt-repository -y ppa:chris-lea/zeromq
+sudo add-apt-repository -y ppa:chris-lea/libpgm
+sudo apt-get update
+sudo apt-get install -y libzmq3-dev
+sudo apt-get install -y python-software-properties python g++ make
 
 # config for efficient git
 git config --global user.name "Cyril Seydoux"
-ssh-keygen -t rsa -N "" -C "cyril.kiwi@hotmail.fr" -f ~/.ssh/id_rsa
+ssh-keygen -t rsa -N "" -C "c.seydoux@gmx.com" -f ~/.ssh/id_rsa
 ssh-add id_rsa
 echo "You should copy the next line into a new ssh key on github (https://github.com/settings/ssh)."
 cat ~/.ssh/id_rsa.pub
